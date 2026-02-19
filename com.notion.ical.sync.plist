@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  com.notion.ical.sync.plist
+  ──────────────────────────
+  macOS launchd job that runs notion_to_ical.py every 5 minutes.
+
+  SETUP — replace the two placeholders before loading:
+    /Users/YOUR_USERNAME   →  your macOS home directory  (run `echo $HOME` in Terminal)
+    /path/to              →  the parent directory where you cloned this repo
+
+  Example: if you cloned to /Users/alice/Projects/notion-ical-sync
+    Replace /Users/YOUR_USERNAME/path/to  →  /Users/alice/Projects
+
+  Then load it:
+    cp com.notion.ical.sync.plist ~/Library/LaunchAgents/
+    launchctl load ~/Library/LaunchAgents/com.notion.ical.sync.plist
+-->
+<plist version="1.0">
+<dict>
+
+  <!-- Unique label for this job -->
+  <key>Label</key>
+  <string>com.notion.ical.sync</string>
+
+  <!-- The command to run: venv python3 + full path to script -->
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/YOUR_USERNAME/path/to/notion-ical-sync/venv/bin/python3</string>
+    <string>/Users/YOUR_USERNAME/path/to/notion-ical-sync/notion_to_ical.py</string>
+  </array>
+
+  <!-- Working directory (must contain .env) -->
+  <key>WorkingDirectory</key>
+  <string>/Users/YOUR_USERNAME/path/to/notion-ical-sync</string>
+
+  <!-- Run every 300 seconds = 5 minutes -->
+  <key>StartInterval</key>
+  <integer>300</integer>
+
+  <!-- Start immediately when loaded, don't wait for first interval -->
+  <key>RunAtLoad</key>
+  <true/>
+
+  <!-- Do NOT restart automatically after each run (it's a one-shot script) -->
+  <key>KeepAlive</key>
+  <false/>
+
+  <!-- Log output for debugging -->
+  <key>StandardOutPath</key>
+  <string>/Users/YOUR_USERNAME/Library/Logs/notion-ical-sync.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/YOUR_USERNAME/Library/Logs/notion-ical-sync-error.log</string>
+
+  <!-- Only run when a user session is active -->
+  <key>SessionCreate</key>
+  <false/>
+
+</dict>
+</plist>

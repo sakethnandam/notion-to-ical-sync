@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  com.notion.ical.server.plist
+  ─────────────────────────────
+  Keeps serve_ical.py running in the background so your calendar app
+  can always reach your .ics files at http://localhost:8080/
+
+  SETUP — replace the two placeholders before loading:
+    /Users/YOUR_USERNAME   →  your macOS home directory  (run `echo $HOME` in Terminal)
+    /path/to              →  the parent directory where you cloned this repo
+
+  Example: if you cloned to /Users/alice/Projects/notion-ical-sync
+    Replace /Users/YOUR_USERNAME/path/to  →  /Users/alice/Projects
+
+  Then load it:
+    cp com.notion.ical.server.plist ~/Library/LaunchAgents/
+    launchctl load ~/Library/LaunchAgents/com.notion.ical.server.plist
+-->
+<plist version="1.0">
+<dict>
+
+  <key>Label</key>
+  <string>com.notion.ical.server</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/YOUR_USERNAME/path/to/notion-ical-sync/venv/bin/python3</string>
+    <string>/Users/YOUR_USERNAME/path/to/notion-ical-sync/serve_ical.py</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/YOUR_USERNAME/path/to/notion-ical-sync</string>
+
+  <!-- Start immediately when loaded -->
+  <key>RunAtLoad</key>
+  <true/>
+
+  <!-- Restart automatically if the server crashes -->
+  <key>KeepAlive</key>
+  <true/>
+
+  <!-- Log output for debugging -->
+  <key>StandardOutPath</key>
+  <string>/Users/YOUR_USERNAME/Library/Logs/notion-ical-server.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/YOUR_USERNAME/Library/Logs/notion-ical-server-error.log</string>
+
+</dict>
+</plist>
