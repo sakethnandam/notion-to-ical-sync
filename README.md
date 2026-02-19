@@ -75,7 +75,7 @@ Set refresh to **every 5 minutes**.
 
 ### 7. Automate it (macOS)
 
-Edit both `.plist` files — replace `sakethnandam` with your username (`whoami` in Terminal) — then:
+Edit both `.plist` files — replace `FULL_PATH_TO_SCRIPT` with your username (`whoami` in Terminal) — then:
 
 ```bash
 cp com.notion.ical.sync.plist ~/Library/LaunchAgents/
@@ -146,3 +146,4 @@ No — the server only listens on `127.0.0.1` (your machine only).
 
 **How do I remove a calendar?**
 Delete it from `NOTION_DATABASES`, delete the `.ics` file, and unsubscribe in your calendar app.
+
