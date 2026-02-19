@@ -21,12 +21,12 @@
 
   <key>ProgramArguments</key>
   <array>
-    <string>/Users/sakethnandam/notion-ical-sync/venv/bin/python3</string>
-    <string>/Users/sakethnandam/notion-ical-sync/serve_ical.py</string>
+    <string>FULL_PATH_TO_SCRIPT/notion-ical-sync/venv/bin/python3</string>
+    <string>FULL_PATH_TO_SCRIPT/notion-ical-sync/serve_ical.py</string>
   </array>
 
   <key>WorkingDirectory</key>
-  <string>/Users/sakethnandam/notion-ical-sync</string>
+  <string>FULL_PATH_TO_SCRIPT/notion-ical-sync</string>
 
   <!-- Start immediately when loaded -->
   <key>RunAtLoad</key>
@@ -37,9 +37,9 @@
   <true/>
 
   <key>StandardOutPath</key>
-  <string>/Users/sakethnandam/Library/Logs/notion-ical-server.log</string>
+  <string>FULL_PATH_TO_SCRIPT/Library/Logs/notion-ical-server.log</string>
   <key>StandardErrorPath</key>
-  <string>/Users/sakethnandam/Library/Logs/notion-ical-server-error.log</string>
+  <string>FULL_PATH_TO_SCRIPT/Library/Logs/notion-ical-server-error.log</string>
 
 </dict>
 </plist>
