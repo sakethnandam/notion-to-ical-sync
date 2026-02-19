@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  com.notion.ical.sync.plist
+  ──────────────────────────
+  macOS launchd job that runs notion_to_ical.py every 5 minutes.
+
+  BEFORE LOADING THIS FILE you must replace the two placeholders:
+    YOUR_MAC_USERNAME  →  your actual macOS username  (run `whoami` in Terminal)
+    FULL_PATH_TO_SCRIPT  →  absolute path to notion_to_ical.py
+
+  Then load it with:
+    cp com.notion.ical.sync.plist ~/Library/LaunchAgents/
+    launchctl load ~/Library/LaunchAgents/com.notion.ical.sync.plist
+-->
+<plist version="1.0">
+<dict>
+
+  <!-- Unique label for this job -->
+  <key>Label</key>
+  <string>com.notion.ical.sync</string>
+
+  <!-- The command to run: python3 + full path to script -->
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/sakethnandam/notion-ical-sync/venv/bin/python3</string>
+    <string>/Users/sakethnandam/notion-ical-sync/notion_to_ical.py</string>
+  </array>
+
+  <!-- Working directory (same folder as the script, so .env is found) -->
+  <key>WorkingDirectory</key>
+  <string>/Users/sakethnandam/notion-ical-sync</string>
+
+  <!-- Run every 300 seconds = 5 minutes -->
+  <key>StartInterval</key>
+  <integer>300</integer>
+
+  <!-- Start immediately when loaded, don't wait for first interval -->
+  <key>RunAtLoad</key>
+  <true/>
+
+  <!-- Restart automatically if the script crashes -->
+  <key>KeepAlive</key>
+  <false/>
+
+  <!-- Log stdout and stderr to files for debugging -->
+  <key>StandardOutPath</key>
+  <string>/Users/sakethnandam/Library/Logs/notion-ical-sync.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/sakethnandam/Library/Logs/notion-ical-sync-error.log</string>
+
+  <!-- Only run when the user is logged in -->
+  <key>SessionCreate</key>
+  <false/>
+
+</dict>
+</plist>
