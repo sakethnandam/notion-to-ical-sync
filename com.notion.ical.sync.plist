@@ -24,13 +24,13 @@
   <!-- The command to run: python3 + full path to script -->
   <key>ProgramArguments</key>
   <array>
-    <string>/Users/sakethnandam/notion-ical-sync/venv/bin/python3</string>
-    <string>/Users/sakethnandam/notion-ical-sync/notion_to_ical.py</string>
+    <string>FULL_PATH_TO_SCRIPT/notion-ical-sync/venv/bin/python3</string>
+    <string>FULL_PATH_TO_SCRIPT/notion-ical-sync/notion_to_ical.py</string>
   </array>
 
   <!-- Working directory (same folder as the script, so .env is found) -->
   <key>WorkingDirectory</key>
-  <string>/Users/sakethnandam/notion-ical-sync</string>
+  <string>FULL_PATH_TO_SCRIPT/notion-ical-sync</string>
 
   <!-- Run every 300 seconds = 5 minutes -->
   <key>StartInterval</key>
@@ -46,9 +46,9 @@
 
   <!-- Log stdout and stderr to files for debugging -->
   <key>StandardOutPath</key>
-  <string>/Users/sakethnandam/Library/Logs/notion-ical-sync.log</string>
+  <string>FULL_PATH_TO_SCRIPT/Library/Logs/notion-ical-sync.log</string>
   <key>StandardErrorPath</key>
-  <string>/Users/sakethnandam/Library/Logs/notion-ical-sync-error.log</string>
+  <string>FULL_PATH_TO_SCRIPT/Library/Logs/notion-ical-sync-error.log</string>
 
   <!-- Only run when the user is logged in -->
   <key>SessionCreate</key>
